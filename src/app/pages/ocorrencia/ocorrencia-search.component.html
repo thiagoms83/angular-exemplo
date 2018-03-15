@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Pesquisa de Ocorrência</h1>
+    <div *ngIf="isLoading">
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+    </div>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div class="form-group">
+            <label for="numero">Número</label>
+            <input type="number" class="form-control" id="numero" required [(ngModel)]="ocorrencia.numero" name="numero" #numero="ngModel">
+            <!-- display validation error-->
+            <div *ngIf="numero.touched && numero.errors">
+                <div class="alert alert-danger" *ngIf="numero.errors.required">
+                    É necessário o número da ocorrência
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ano">Ano</label>
+            <input type="number" class="form-control" id="ano" required [(ngModel)]="ocorrencia.ano" name="ano" #ano="ngModel" minlength="4">
+            <!-- display validation error-->
+            <div *ngIf="ano.touched && ano.errors">
+                <div class="alert alert-danger" *ngIf="ano.errors.required">
+                    É necessário o ano da ocorrência
+                </div>
+                <div class="alert alert-danger" *ngIf="ano.errors.minlength">
+                    Ano deve ter no mínimo 4 dígitos
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="distritos">Delegacia</label>
+            <select class="form-control" id="distritos" [(ngModel)]="ocorrencia.distrito.id" name="distrito">
+                <option *ngFor="let distrito of distritos" [value]="distrito.id">{{distrito.nome}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Procurar</button>
+    </form>
+</div>

@@ -1,0 +1,27 @@
+<div *ngIf="isLoading">
+    <i class="fa fa-spinner fa-spin fa-3x"></i>
+</div>
+<div *ngIf="ocorrencia">
+    <h1>Ocorrência: {{ ocorrencia.numero }}/{{ ocorrencia.ano }} - {{ ocorrencia.distrito.nome }}</h1>
+    <h2>Histórico: {{ ocorrencia.historico }}</h2>
+
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div class="form-group">
+            <label for="natureza">Natureza</label>
+            <select class="form-control" id="natureza" [(ngModel)]="tipo" name="natureza">
+                <option *ngFor="let pericia of pericias" [value]="pericia.nome">{{pericia.codigo}} - {{pericia.nome}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Memorandos</label>
+            <div *ngFor="let documento of memorandosView;let i = index" class="checkbox">
+              <label>
+                <input type="checkbox" name="documento_{{i}}" [(ngModel)]="documento.selecionado">
+                {{i + 1}}. {{documento.assunto}}
+              </label>
+            </div>
+          </div>
+        <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Criar</button>
+    </form>
+</div>

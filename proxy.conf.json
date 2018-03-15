@@ -1,0 +1,9 @@
+
+{
+  "/api/*": {
+    "target": "https://localhost:8443/webservice/rest",
+    "secure": false,
+    "pathRewrite": {"^/api" : ""}
+  }
+}
+

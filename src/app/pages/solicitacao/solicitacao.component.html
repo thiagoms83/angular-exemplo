@@ -1,0 +1,14 @@
+<div *ngIf="isLoading">
+    <i class="fa fa-spinner fa-spin fa-3x"></i>
+</div>
+<div *ngFor="let solicitacao of solicitacoes" class="media">
+    <div class="media-left">
+        <a [routerLink]="['solicitacao',solicitacao.id]">
+            {{solicitacao.ocorrencia.distrito.nome}}
+        </a>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">{{ solicitacao.tipo }}</h4>
+        Data: {{ solicitacao.data | date:"dd/MM/yyyy HH:mm" }}
+    </div>
+</div>
