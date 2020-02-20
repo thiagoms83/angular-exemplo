@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
-import { Ocorrencia } from './../../models/ocorrencia';
-import { ListaService } from './../../providers/lista.service';
-import { Distrito } from './../../models/distrito';
+import { Ocorrencia } from '../../models/ocorrencia';
+import { ListaService } from '../../providers/lista.service';
+import { Distrito } from '../../models/distrito';
 import { Component } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'ocorrencia-search',
@@ -11,11 +12,11 @@ import { Component } from '@angular/core';
 export class OcorrenciaSearchComponent {
   ocorrencia: Ocorrencia;
   distritos: Distrito[] = [];
-  isLoading: boolean = false;
+  isLoading = false;
 
   constructor(private _router: Router, private _listaService: ListaService) {
       this.ocorrencia = new Ocorrencia();
-      let distrito = new Distrito();
+      const distrito = new Distrito();
       distrito.id = 1;
       this.ocorrencia.distrito = distrito;
       this.ocorrencia.ano = new Date().getFullYear();
@@ -23,7 +24,7 @@ export class OcorrenciaSearchComponent {
 
   ngOnInit() {
     this.isLoading = true;
-    this._listaService.getDistritos().subscribe( data => {
+    this._listaService.getDistritos().subscribe( (data: Distrito[]) => {
       this.distritos = data;
       this.isLoading = false;
     });
@@ -32,4 +33,9 @@ export class OcorrenciaSearchComponent {
   onSubmit() {
     this._router.navigate(['ocorrencia', this.ocorrencia.numero, this.ocorrencia.ano, this.ocorrencia.distrito.id]);
   }
+
+  ngAfterViewInit() {
+    $('.select2').select2();
+  }
+
 }

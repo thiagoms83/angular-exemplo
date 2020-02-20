@@ -2,8 +2,9 @@
     <i class="fa fa-spinner fa-spin fa-3x"></i>
 </div>
 <div *ngIf="ocorrencia">
-    <h1>Ocorrência: {{ ocorrencia.numero }}/{{ ocorrencia.ano }} - {{ ocorrencia.distrito.nome }}</h1>
-    <h2>Histórico: {{ ocorrencia.historico }}</h2>
+    <h4><b>Ocorrência:</b> {{ ocorrencia.numero }}/{{ ocorrencia.ano }} - {{ ocorrencia.distrito.nome }}</h4>
+    <label>Histórico</label>
+    <h5>{{ ocorrencia.historico }}</h5>
 
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
         <div class="form-group">

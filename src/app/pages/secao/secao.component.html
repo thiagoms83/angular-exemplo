@@ -1,0 +1,26 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        <ng-content select=".titulo-cabecalho"></ng-content>
+        <small>
+            <ng-content select=".subtitulo-cabecalho"></ng-content>
+        </small>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <ng-content select=".titulo"></ng-content>
+            </h3>
+        </div>
+        <div class="box-body">
+            <ng-content select=".conteudo"></ng-content>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</section>
+<!-- /.content -->

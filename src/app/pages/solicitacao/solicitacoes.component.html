@@ -1,0 +1,24 @@
+<div *ngFor="let solicitacao of solicitacoes" class="media">
+    <div class="media-left">
+        <a [routerLink]="['solicitacao', solicitacao.id]">
+            {{solicitacao.ocorrencia.distrito.nome | truncate: 0}}
+        </a>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">
+            {{solicitacao.ocorrencia.numero}}/{{solicitacao.ocorrencia.ano}} - {{solicitacao.ocorrencia.distrito.nome}}
+        </h4>
+        <h5>{{ solicitacao.tipo }}</h5>
+        <div *ngIf="solicitacao.deslocamento && solicitacao.deslocamento.perito && solicitacao.deslocamento.equipe">
+            Deslocamento: {{solicitacao.deslocamento.perito.nome}} ({{solicitacao.deslocamento.equipe.nome}})
+            <span *ngIf="solicitacao.deslocamento.desfeito"> Desfeito</span>
+        </div>
+        <h5 *ngIf="solicitacao.memorandos && solicitacao.memorandos.length > 0">
+            <span>Memorandos: </span>
+            <span *ngFor="let memorando of solicitacao.memorandos;let i = index">
+                <span *ngIf="i > 0">, </span>
+                {{memorando.documento.numero}} - {{memorando.documento.origem}}
+            </span>
+        </h5>
+    </div>
+</div>

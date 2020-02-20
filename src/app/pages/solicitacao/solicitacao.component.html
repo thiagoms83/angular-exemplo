@@ -1,14 +1,54 @@
-<div *ngIf="isLoading">
-    <i class="fa fa-spinner fa-spin fa-3x"></i>
-</div>
-<div *ngFor="let solicitacao of solicitacoes" class="media">
-    <div class="media-left">
-        <a [routerLink]="['solicitacao',solicitacao.id]">
-            {{solicitacao.ocorrencia.distrito.nome}}
-        </a>
+<app-secao>
+    <div class="titulo-cabecalho">
+        Solicitação
     </div>
-    <div class="media-body">
-        <h4 class="media-heading">{{ solicitacao.tipo }}</h4>
-        Data: {{ solicitacao.data | date:"dd/MM/yyyy HH:mm" }}
+
+    <div class="subtitulo-cabecalho">
+        Detalhes
     </div>
-</div>
+
+    <div class="titulo">
+        <div *ngIf="solicitacao">
+            {{solicitacao.ocorrencia.numero}}/{{solicitacao.ocorrencia.ano}} - {{solicitacao.ocorrencia.distrito.nome}}
+        </div>
+    </div>
+
+    <div class="conteudo">
+        <div *ngIf="isLoading">
+            <i class="fa fa-spinner fa-spin fa-3x"></i>
+        </div>
+        <div *ngIf="solicitacao">
+
+            <label>Data</label>
+            <p>{{solicitacao.data | date: "dd/MM/yyyy 'às' HH:mm"}}</p>
+
+            <label>Tipo</label>
+            <p>{{solicitacao.tipo}}</p>
+
+            <div *ngIf="solicitacao.millenium">
+                <label>Endereço</label>
+                <p>{{solicitacao.millenium.endereco}}</p>
+
+                <label>Veículos</label>
+                <p>{{solicitacao.millenium.veiculos}}</p>
+
+                <label>Observacao</label>
+                <p>{{solicitacao.millenium.observacao}}</p>
+            </div>
+
+            <div *ngIf="solicitacao.deslocamento">
+                <label>Perito</label>
+                <p>{{solicitacao.deslocamento.perito.nome}} ({{solicitacao.deslocamento.equipe.nome}})</p>
+
+                <label>Deslocamento</label>
+                <p>{{solicitacao.deslocamento.horaDeslocamento | date: "dd/MM/yyyy 'às' HH:mm"}})</p>
+
+                <label>Início</label>
+                <p>{{solicitacao.deslocamento.horaInicio | date: "HH:mm"}}</p>
+
+                <label>Término</label>
+                <p>{{solicitacao.deslocamento.horaTermino | date: "HH:mm"}}</p>
+            </div>
+        </div>
+    </div>
+</app-secao>

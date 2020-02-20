@@ -1,20 +1,25 @@
-import { Solicitacao } from './../models/solicitacao';
-import {Http} from '@angular/http';
+import {Solicitacao} from '../models/solicitacao';
 import 'rxjs/add/operator/map';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class SolicitacaoService {
-    
-    constructor(private _http: Http){
+  constructor(private _http: HttpClient) {
 
-    }
+  }
 
-    getSolicitacoes() {
-        return this._http.get('/api/solicitacao?since_version=0').map(res => res.json())            
-    }
+  getSolicitacoes(sinceVersion: number) {
+    return this._http.get('/api/webservice/rest/solicitacao?since_version=' + sinceVersion);
+  }
 
-    criarSolicitacao(solicitacao: Solicitacao) {
-        return this._http.post('/api/solicitacao', solicitacao).map(res => res.json())            
-    }
+  getSolicitacao(solicitacaoId: number) {
+    return this._http.get('/api/webservice/rest/solicitacao/' + solicitacaoId);
+  }
+
+  criarSolicitacao(solicitacao: Solicitacao) {
+    const lista: Solicitacao[] = [];
+    lista.push(solicitacao);
+    return this._http.post('/api/webservice/rest/solicitacao/lista', lista);
+  }
 }

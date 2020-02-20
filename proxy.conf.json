@@ -1,9 +1,14 @@
 
 {
-  "/api/*": {
-    "target": "https://localhost:8443/webservice/rest",
+  "/externo/*": {
+    "target": "https://criminalistica.pcdf.df.gov.br",
     "secure": false,
-    "pathRewrite": {"^/api" : ""}
+    "pathRewrite": {"^/externo" : ""}
+  },
+  "/interno/*": {
+    "target": "https://croquidigital.ic.pcdf.gov.br",
+    "secure": false,
+    "pathRewrite": {"^/interno" : ""}
   }
 }
 

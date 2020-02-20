@@ -1,0 +1,47 @@
+<app-secao>
+    <div class="titulo-cabecalho">
+        Solicitações
+    </div>
+
+    <div class="subtitulo-cabecalho">
+    </div>
+
+    <div class="titulo">
+        <a class="btn btn-app" routerLink="ocorrencia">
+            <i class="fa fa-plus"></i> Pátio
+        </a>
+    </div>
+
+    <div class="conteudo">
+        <div *ngIf="isLoading">
+            <i class="fa fa-spinner fa-spin fa-3x"></i>
+        </div>
+        <a class="btn btn-app" (click)="atualizar()">
+            <i class="fa fa-refresh"></i> Atualizar
+        </a>
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#tab_1" data-toggle="tab">Locais</a>
+                </li>
+                <li>
+                    <a href="#tab_2" data-toggle="tab">Vistorias</a>
+                </li>
+                <li>
+                    <a href="#tab_3" data-toggle="tab">Pátios</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+                    <solicitacoes [solicitacoes]="locais"></solicitacoes>
+                </div>
+                <div class="tab-pane" id="tab_2">
+                    <solicitacoes [solicitacoes]="vistorias"></solicitacoes>
+                </div>
+                <div class="tab-pane" id="tab_3">
+                    <solicitacoes [solicitacoes]="patios"></solicitacoes>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-secao>

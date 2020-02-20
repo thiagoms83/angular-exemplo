@@ -1,14 +1,14 @@
-import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class OcorrenciaService {
-    constructor(private _http: Http){
+  constructor(private _http: HttpClient) {
 
-    }
+  }
 
-    getOcorrencia(numero:number, ano: number, distritoId: number) {
-        return this._http.get('/api/ocorrencia/' + numero + '/' + ano + '/' + distritoId).map(res => res.json())            
-    }
+  getOcorrencia(numero: number, ano: number, distritoId: number) {
+    return this._http.get('/api/webservice/rest/ocorrencia/' + numero + '/' + ano + '/' + distritoId);
+  }
 }

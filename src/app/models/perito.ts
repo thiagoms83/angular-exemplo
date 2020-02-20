@@ -1,4 +1,6 @@
 export class Perito {
-    id: number
-    nome: string
+  id: number;
+  matricula: string;
+  nome: string;
+  nomeCompleto: string;
 }

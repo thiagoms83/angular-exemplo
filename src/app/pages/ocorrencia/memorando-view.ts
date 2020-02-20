@@ -1,4 +1,4 @@
 export class MemorandoView {
-    assunto: string
-    selecionado: boolean
+  assunto: string;
+  selecionado: boolean;
 }
